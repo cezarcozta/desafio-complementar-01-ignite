@@ -33,7 +33,7 @@ export function Content({ selectedGenreId, selectedGenre }: IContent) {
       .then((response) => {
         setMovies(response.data);
       });
-  });
+  }, [selectedGenreId]);
 
   return (
     <div className="container">

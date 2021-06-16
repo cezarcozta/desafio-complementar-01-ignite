@@ -24,18 +24,10 @@ interface MovieProps {
 }
 
 export function App() {
-  const [genres, setGenres] = useState<GenreResponseProps[]>([]);
   const [selectedGenreId, setSelectedGenreId] = useState(1);
-
   const [selectedGenre, setSelectedGenre] = useState<GenreResponseProps>(
     {} as GenreResponseProps
   );
-
-  useEffect(() => {
-    api.get<GenreResponseProps[]>("genres").then((response) => {
-      setGenres(response.data);
-    });
-  }, []);
 
   useEffect(() => {
     api
@@ -45,14 +37,9 @@ export function App() {
       });
   }, [selectedGenreId]);
 
-  function handleClickButton(id: number) {
-    setSelectedGenreId(id);
-  }
-
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
       <SideBar
-        genres={genres}
         selectedGenreId={selectedGenreId}
         setSelectedGenreId={setSelectedGenreId}
       />
